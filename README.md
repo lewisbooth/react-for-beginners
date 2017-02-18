@@ -1,2 +1,2 @@
 # react-for-beginners
-Course files
+Course files for https://reactforbeginners.com
