@@ -2,12 +2,12 @@ import React from 'react';
 import { formatPrice } from '../helpers'
 
 class Fish extends React.Component {
-     render() {
-         const { details, index } = this.props;
-         const isAvailable = details.status === 'available';
-         const buttonText = isAvailable ? 'Add To Order' : 'Sold Out!';
+    render() {
+        const { details, index } = this.props;
+        const isAvailable = details.status === 'available';
+        const buttonText = isAvailable ? 'Add To Order' : 'Sold Out!';
 
-         return (
+        return (
             <li className='menu-fish'>
             <img src={details.image} alt={details.name} />
             <h3 className='fish-name'>
@@ -17,14 +17,14 @@ class Fish extends React.Component {
             <p>{details.desc}</p>
             <button onClick={() => this.props.addToOrder(index)} disabled={!isAvailable}>{buttonText}</button>
             </li>
-         )
-     }
+        )
+    }
+    static propTypes = {
+        details: React.PropTypes.object.isRequired,
+        index: React.PropTypes.string.isRequired,
+        addToOrder: React.PropTypes.func.isRequired
+    }
 }
  
-Fish.propTypes = {
-    details: React.PropTypes.object.isRequired,
-    index: React.PropTypes.string.isRequired,
-    addToOrder: React.PropTypes.func.isRequired
-}
 
 export default Fish;

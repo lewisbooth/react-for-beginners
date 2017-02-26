@@ -3,11 +3,7 @@ import {formatPrice} from '../helpers';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 class Order extends React.Component {
-    constructor() {
-        super();
-        this.renderOrder = this.renderOrder.bind(this);
-    }
-    renderOrder(key) {        
+    renderOrder = (key) => {        
         const fish = this.props.fishes[key];
         const count = this.props.order[key];
 
@@ -34,7 +30,7 @@ class Order extends React.Component {
                 <span className='price'>{formatPrice(count * fish.price)}</span>
             </li>        
         )
-    }
+    };
     render() {
         const orderIds = Object.keys(this.props.order);
         const total = orderIds.reduce((prevTotal, key) => {
@@ -65,12 +61,12 @@ class Order extends React.Component {
             </div>
         )
     }
+    static propTypes = {
+        fishes: React.PropTypes.object.isRequired,
+        order: React.PropTypes.object.isRequired,
+        removeFishOrder: React.PropTypes.func.isRequired
+    }
 }
 
-Order.propTypes = {
-    fishes: React.PropTypes.object.isRequired,
-    order: React.PropTypes.object.isRequired,
-    removeFishOrder: React.PropTypes.func.isRequired
-}
 
 export default Order;

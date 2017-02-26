@@ -7,22 +7,12 @@ import sampleFishes from '../sample-fishes'
 import base from '../base'
 
 class App extends React.Component {
-    constructor() {
-        super();
 
-        this.addFish = this.addFish.bind(this);
-        this.loadSamples = this.loadSamples.bind(this);
-        this.addToOrder = this.addToOrder.bind(this);
-        this.updateFish = this.updateFish.bind(this);
-        this.removeFish = this.removeFish.bind(this);
-        this.removeFishOrder = this.removeFishOrder.bind(this);
+    state = {
+        fishes: {},
+        order: {}
+    };
 
-        // Initial State
-        this.state = {
-            fishes: {},
-            order: {}
-        };
-    }
     componentWillMount() {
         this.ref = base.syncState(`${this.props.params.storeId}/fishes`
         , {
@@ -36,44 +26,44 @@ class App extends React.Component {
                 order: JSON.parse(localStorageRef)
             })
         }
-    }
+    };
     componentWillUnmount() {
         base.removeBinding(this.ref);
-    }
+    };
     componentWillUpdate(nextProps, nextState) {
         localStorage.setItem(`order-${this.props.params.storeId}`, JSON.stringify(nextState.order))
-    }
-    addFish(fish) {
+    };
+    addFish = (fish) => {
         const fishes = {...this.state.fishes};
         const timeStamp = Date.now();
         fishes[`fish-${timeStamp}`] = fish;
         this.setState({ fishes });
-    }
-    updateFish(key, updatedFish) {
+    };
+    updateFish = (key, updatedFish) => {
         const fishes = {...this.state.fishes};
         fishes[key] = updatedFish;
         this.setState({ fishes });
-    }
-    removeFish(key) {
+    };
+    removeFish = (key) => {
         const fishes = {...this.state.fishes};
         fishes[key] = null;
         this.setState({ fishes });
-    }
-    removeFishOrder(key) {
+    };
+    removeFishOrder = (key) => {
         const order = {...this.state.order};
         delete order[key];
         this.setState({ order });
-    }
-    loadSamples() {
+    };
+    loadSamples = () => {
         this.setState({
             fishes: sampleFishes
         })
-    }
-    addToOrder(key) {
+    };
+    addToOrder = (key) => {
         const order = {...this.state.order};
         order[key] = order[key] + 1 || 1;
         this.setState({ order })
-    }
+    };
     render() {
         return (
         <div className='catch-of-the-day'>
@@ -103,11 +93,11 @@ class App extends React.Component {
             />
         </div>
         )
-    }
-}
+    };
 
-App.propTypes = {
-    params: React.PropTypes.object.isRequired
+    static propTypes = {
+        params: React.PropTypes.object.isRequired
+    };
 }
 
 export default App;

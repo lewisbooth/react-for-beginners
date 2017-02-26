@@ -28,11 +28,11 @@ class AddFishForm extends React.Component {
             <button type="submit">+ Add Item</button>
         </form>
         )
-    }
-}
+    };
+    static propTypes = {
+        addFish: React.PropTypes.func.isRequired
+    };
+};
 
-AddFishForm.propTypes = {
-    addFish: React.PropTypes.func.isRequired
-}
 
 export default AddFishForm;
