@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "history": "4.2.0",
-    "re-base": "2.2.0",
+    "re-base": "latest",
     "react": "15.3.2",
     "react-addons-css-transition-group": "15.3.2",
     "react-dom": "15.3.2",
@@ -25,6 +25,7 @@
     "start": "react-scripts start",
     "watch": "concurrently --names \"webpack, stylus\" --prefix name \"npm run start\" \"npm run styles:watch\"",
     "build": "react-scripts build",
+    "deploy": "ns ./build --cmd 'list ./content -s'",
     "eject": "react-scripts eject",
     "styles": "stylus -u autoprefixer-stylus ./src/css/style.styl -o ./src/css/style.css",
     "styles:watch": "stylus -u autoprefixer-stylus -w ./src/css/style.styl -o ./src/css/style.css"
